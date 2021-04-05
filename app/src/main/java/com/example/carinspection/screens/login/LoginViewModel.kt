@@ -8,7 +8,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.findNavController
 import com.example.carinspection.R
-import com.example.carinspection.models.AuthModel
 
 class LoginViewModel: ViewModel () {
 

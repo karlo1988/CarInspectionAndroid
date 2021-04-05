@@ -13,7 +13,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.example.carinspection.databinding.ActivityMainBinding
-import com.example.carinspection.models.AuthModel
 
 class MainActivity : AppCompatActivity() {
 

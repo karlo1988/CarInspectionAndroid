@@ -6,13 +6,11 @@ import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.carinspection.R
 import com.example.carinspection.databinding.FragmentLoginBinding
-import com.example.carinspection.models.AuthModel
 
 
 class LoginFragment : Fragment() {
