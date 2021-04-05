@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="input">
+        <item name="android:layout_margin">@dimen/layout_margin</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:padding">@dimen/small_padding</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">@dimen/input_size</item>
+    </style>
+
+    <style name="title">
+        <item name="android:layout_marginTop">@dimen/layout_margin</item>
+        <item name="android:layout_marginRight">@dimen/layout_margin</item>
+        <item name="android:layout_marginLeft">@dimen/layout_margin</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:padding">@dimen/small_padding</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">@dimen/title_size</item>
+    </style>
+
+    <style name="menu_title">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">@dimen/title_size</item>
+    </style>
+
+    <style name="error">
+        <item name="android:layout_marginRight">@dimen/layout_margin</item>
+        <item name="android:layout_marginLeft">@dimen/layout_margin</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:padding">@dimen/small_padding</item>
+        <item name="android:textColor">@android:color/holo_red_light</item>
+        <item name="android:textSize">@dimen/input_size</item>
+    </style>
+
+    <style name="WhiteBox">
+        <item name="android:background">@android:color/holo_green_light</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">@dimen/box_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+</resources>

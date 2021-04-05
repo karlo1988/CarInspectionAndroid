@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">ავტოტეკი</string>
+    <string name="what_is_your_nickname">What is your Nickname?</string>
+    <string name="done">Done</string>
+    <string name="password_text">პაროლი</string>
+    <string name="login_text">შესვლის სახელი</string>
+    <string name="authorization_text">ავტორიზაცია</string>
+    <string name="sign_in_text">შესვლა</string>
+    <string name="error_text">შეცდომა</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="settings">პარამეტრები</string>
+    <string name="server_address">სერვერის მისამართი</string>
+    <string name="save_text">შენახვა</string>
+    <string name="menu_text">მენიუ</string>
+</resources>
