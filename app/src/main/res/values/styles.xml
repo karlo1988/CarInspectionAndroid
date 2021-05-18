@@ -42,4 +42,5 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:fontFamily">@font/roboto</item>
     </style>
+
 </resources>

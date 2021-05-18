@@ -11,5 +11,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/con_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/cars_list_text" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

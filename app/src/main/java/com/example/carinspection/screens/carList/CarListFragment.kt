@@ -21,7 +21,6 @@ class CarListFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate<FragmentCarListBinding>(inflater, R.layout.fragment_car_list, container, false)
         binding.carList=this
-        setHasOptionsMenu(false)
         return binding.root
     }
 
