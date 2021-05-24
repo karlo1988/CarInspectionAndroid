@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view_general">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/carListFragment"
+            android:icon="@drawable/settings"
+            android:title="@string/cars_list_text" />
+        <item
+            android:id="@+id/usersListFragment"
+            android:icon="@drawable/settings"
+            android:title="@string/users_list_text" />
+    </group>
+</menu>
