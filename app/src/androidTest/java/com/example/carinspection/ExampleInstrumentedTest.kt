@@ -1,24 +1,60 @@
 package com.example.carinspection
 
-import androidx.test.platform.app.InstrumentationRegistry
+import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
-
+import androidx.test.platform.app.InstrumentationRegistry
+import com.example.carinspection.database.CarInspectionDao
+import com.example.carinspection.database.CarInspectionDatabase
+import com.example.carinspection.database.User
+import org.junit.Assert.assertEquals
+import org.junit.After
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-
-import org.junit.Assert.*
+import java.io.IOException
 
 /**
- * Instrumented test, which will execute on an Android device.
- *
- * See [testing documentation](http://d.android.com/tools/testing).
+ * This is not meant to be a full set of tests. For simplicity, most of your samples do not
+ * include tests. However, when building the Room, it is helpful to make sure it works before
+ * adding the UI.
  */
+
 @RunWith(AndroidJUnit4::class)
-class ExampleInstrumentedTest {
+class CarInspectionTest {
+
+    private lateinit var sleepDao: CarInspectionDao
+    private lateinit var db: CarInspectionDatabase
+
+    @Before
+    fun createDb() {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        // Using an in-memory database because the information stored here disappears when the
+        // process is killed.
+        db = Room.inMemoryDatabaseBuilder(context, CarInspectionDatabase::class.java)
+                // Allowing main thread queries, just for testing.
+                .allowMainThreadQueries()
+                .build()
+        sleepDao = db.carInspectionDao
+    }
+
+    @After
+    @Throws(IOException::class)
+    fun closeDb() {
+
+        db.close()
+    }
+
     @Test
-    fun useAppContext() {
-        // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.example.carinspection", appContext.packageName)
+    @Throws(Exception::class)
+    fun insertAndGetUser() {
+        val user = User()
+        user.firstName="მთავარი"
+        user.lastName="ადმინისტრატორი"
+        user.login="Admin"
+        user.password="admin1234"
+        user.isAdmin=true;
+        sleepDao.insertUser(user)
+        val usr = sleepDao.getUser(1)
+        assertEquals(usr?.id, 1)
     }
 }

@@ -1,9 +1,9 @@
 package com.example.carinspection.screens.users
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.Transformations
+import androidx.lifecycle.*
 import com.example.carinspection.database.CarInspectionDao
+import com.example.carinspection.database.CarInspectionDatabase
 import com.example.carinspection.database.User
 import com.example.carinspection.helpers.formatUsers
 import kotlinx.coroutines.*
@@ -20,27 +20,55 @@ class UsersListViewModel(
     }
 
     private val uiScope = CoroutineScope(Dispatchers.Main +  viewModelJob)
-
+    private var firstUser = MutableLiveData<User?>()
     private val users = database.getAllUsers()
 
-    val usersString = Transformations.map(users) { users ->
+    /**
+     * Converted nights to Spanned for displaying.
+     */
+    var usersString=Transformations.map(users) { users ->
         formatUsers(users, application.resources)
     }
 
-    init {
 
+    init {
+        //initializeTonight()
     }
 
-    fun onInsert(){
+    private fun initializeTonight() {
         uiScope.launch {
-            val user=User();
-            onCreateUser(user)
+            insertDefault();
+
+            firstUser.value = getFirstFromDatabase()
         }
     }
-     private suspend fun onCreateUser(user: User){
-        withContext(Dispatchers.IO) {
+
+    /**
+     *  Handling the case of the stopped app or forgotten recording,
+     *  the start and end times will be the same.j
+     *
+     *  If the start time and end time are not the same, then we do not have an unfinished
+     *  recording.
+     */
+    private suspend fun getFirstFromDatabase(): User? {
+        return withContext(Dispatchers.IO) {
+            var night = database.firstUser()
+            night
+        }
+    }
+
+    private suspend fun insertDefault(){
+        return withContext(Dispatchers.IO) {
+            var user=User()
+            user.firstName="მთავარი"
+            user.lastName="ადმინისტრატორი"
+            user.login="Admin"
+            user.password="admin1234"
+            user.isAdmin=true;
             database.insertUser(user)
         }
     }
+
+
 
 }
