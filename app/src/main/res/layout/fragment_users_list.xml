@@ -22,7 +22,19 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ScrollView
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <ListView
+                android:id="@+id/usersList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+            </ListView>
+        </LinearLayout>
+
+      <!--  <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -30,9 +42,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/users_list_text">
 
-            <!-- In the TextView, we can access the nightsString LiveData,
-                 which keeps it displayed and updated in the TextView
-                 whenever it changes. -->
 
             <TextView
                 android:id="@+id/textview"
@@ -42,7 +51,7 @@
                 android:layout_marginTop="@dimen/layout_margin"
                 android:layout_marginEnd="@dimen/layout_margin"
                 android:text="@{usersListViewModel.usersString}" />
-        </ScrollView>
+        </ScrollView>-->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

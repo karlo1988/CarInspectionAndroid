@@ -1,5 +1,6 @@
 package com.example.carinspection.screens.login
 
+import android.app.Application
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.Bindable
@@ -8,11 +9,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.findNavController
 import com.example.carinspection.R
+import com.example.carinspection.database.CarInspectionDao
+import com.example.carinspection.database.User
+import kotlinx.coroutines.*
 
-class LoginViewModel: ViewModel () {
+class LoginViewModel(val database: CarInspectionDao,
+                     application: Application): ViewModel () {
 
     private val LOGIN: String="Admin"
     private val PASS: String="1234"
+    /*private var viewModelJob = Job()
+    private var user = MutableLiveData<User?>()
+    private val uiScope = CoroutineScope(Dispatchers.Main +  viewModelJob)*/
 
     var login=""
     var password=""
@@ -49,7 +57,22 @@ class LoginViewModel: ViewModel () {
             return
         }
 
-        if (login != LOGIN || password != PASS) {
+       /* uiScope.launch {
+            user.value=getUser(login)
+        }*/
+
+        val user=database.getUser(login);
+
+        if(user==null){
+            _errorText.value = "შესვლის სახელი ან პაროლი არასწორია!"
+            _authorized.value = false
+            _failed.value=true
+            return
+        }
+
+
+
+        if ( password != user.password) {
             _errorText.value = "შესვლის სახელი ან პაროლი არასწორია!"
             _authorized.value = false
             _failed.value=true
@@ -69,6 +92,13 @@ class LoginViewModel: ViewModel () {
     }
     override fun onCleared() {
         super.onCleared()
+       // viewModelJob.cancel()
 
     }
+    /*private suspend fun getUser(login: String): User? {
+        return withContext(Dispatchers.IO) {
+            var user = database.getUser(login)
+            user
+        }
+    }*/
 }

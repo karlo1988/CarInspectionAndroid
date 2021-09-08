@@ -11,7 +11,10 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.carinspection.GeneralActivity
 import com.example.carinspection.R
+import com.example.carinspection.database.CarInspectionDatabase
 import com.example.carinspection.databinding.FragmentLoginBinding
+import com.example.carinspection.screens.users.UsersListViewModel
+import com.example.carinspection.screens.users.UsersListViewModelFactory
 
 
 class LoginFragment : Fragment() {
@@ -35,7 +38,13 @@ class LoginFragment : Fragment() {
         )
         binding.errorText.visibility = View.GONE
 
-        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+        val application = requireNotNull(this.activity).application
+        val dataSource = CarInspectionDatabase.getInstance(application).carInspectionDao
+        val viewModelFactory = LoginViewModelFactory(dataSource, application)
+        val viewModel =
+            ViewModelProvider(
+                this, viewModelFactory).get(LoginViewModel::class.java)
+
         binding.loginViewModel=viewModel
 
         binding.setLifecycleOwner(this)

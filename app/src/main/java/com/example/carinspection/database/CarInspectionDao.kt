@@ -21,6 +21,12 @@ interface CarInspectionDao {
     @Query("select * from users limit 1")
     fun firstUser():User
 
+    @Query("select * from users where login=:login")
+    fun getUser(login: String):User
+
     @Query("select * from users order by id")
     fun getAllUsers():LiveData<List<User>>
+
+    @Query("delete from users")
+    fun clearUsers()
 }

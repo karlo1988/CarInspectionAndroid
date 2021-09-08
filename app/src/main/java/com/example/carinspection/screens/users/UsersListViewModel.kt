@@ -21,14 +21,12 @@ class UsersListViewModel(
 
     private val uiScope = CoroutineScope(Dispatchers.Main +  viewModelJob)
     private var firstUser = MutableLiveData<User?>()
-    private val users = database.getAllUsers()
+    val users = database.getAllUsers()
 
     /**
      * Converted nights to Spanned for displaying.
      */
-    var usersString=Transformations.map(users) { users ->
-        formatUsers(users, application.resources)
-    }
+
 
 
     init {
@@ -37,9 +35,10 @@ class UsersListViewModel(
 
     private fun initializeTonight() {
         uiScope.launch {
-            insertDefault();
+            clearUsers()
+           /* insertDefault();
 
-            firstUser.value = getFirstFromDatabase()
+            firstUser.value = getFirstFromDatabase()*/
         }
     }
 
@@ -66,6 +65,13 @@ class UsersListViewModel(
             user.password="admin1234"
             user.isAdmin=true;
             database.insertUser(user)
+        }
+    }
+
+    private  suspend fun clearUsers(){
+        return withContext(Dispatchers.IO) {
+
+            database.clearUsers()
         }
     }
 
